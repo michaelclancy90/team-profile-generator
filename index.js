@@ -75,6 +75,15 @@ const internQuestions = [
     },
 ]*/
 
+const roleQuestion = [
+    {
+        type: 'list',
+        name: 'role',
+        message: "What is the next team member's role?",
+        choices: ['Engineer', 'Intern', 'None'],
+    }
+]
+
 function init () {
     inquirer
     .prompt(managerQuestions)
@@ -82,10 +91,25 @@ function init () {
          const newManager = new Manager(name,id,email,officeNumber);
          teamMembers.push(newManager);
          console.log(teamMembers);
-
-
-        
+        nextTeamMember()
     }) 
+}
+
+function nextTeamMember(){
+    inquirer
+    .prompt(roleQuestion)
+    .then(({choices}) => {
+    if (choices === 'Intern'){
+        console.log('Intern')
+        intern();
+    } else if (choices === 'Engineer'){
+        console.log('engineer')
+         engineer()
+    } else {
+        console.log('None')
+    }
+    })
+
 }
 
 init ()
