@@ -4,48 +4,50 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+const teamMembers = []
+
 const managerQuestions = [
     {
         type: 'input',
-        name: 'managerName',
+        name: 'name',
         message: 'Who is the team manager?',
     },
     {
         type: 'input',
-        name: 'managerId',
+        name: 'id',
         message: 'What is their employee ID number?',
     },
     {
         type: 'input',
-        name: 'managerEmail',
+        name: 'email',
         message: 'What is their email address?',
     },
     {
         type: 'input',
-        name: 'managerOfficeNumber',
+        name: 'officeNumber',
         message: 'What is their office number?',
     },
 ]
-
+/*
 const engineerQuestions = [
     {
         type: 'input',
-        name: 'engineerName',
+        name: 'name',
         message: 'Who is the engineer?',
     },
     {
         type: 'input',
-        name: 'engineerId',
+        name: 'Id',
         message: 'What is their employee ID number?',
     },
     {
         type: 'input',
-        name: 'engineerEmail',
+        name: 'email',
         message: 'What is their email address?',
     },
     {
         type: 'input',
-        name: 'engineerGithub',
+        name: 'github',
         message: 'What is their Github Username?',
     },
 ]
@@ -53,29 +55,37 @@ const engineerQuestions = [
 const internQuestions = [
     {
         type: 'input',
-        name: 'internName',
+        name: 'name'
         message: 'Who is the engineer?',
     },
     {
         type: 'input',
-        name: 'internId',
+        name: 'id',
         message: 'What is their employee ID number?',
     },
     {
         type: 'input',
-        name: 'internEmail',
+        name: 'email',
         message: 'What is their email address?',
     },
     {
         type: 'input',
-        name: 'internSchool',
+        name: 'school',
         message: 'What school do they attend?',
     },
-]
+]*/
 
 function init () {
     inquirer
     .prompt(managerQuestions)
+    .then(({name,id,email,officeNumber}) =>{
+         const newManager = new Manager(name,id,email,officeNumber);
+         teamMembers.push(newManager);
+         console.log(teamMembers);
+
+
+        
+    }) 
 }
 
 init ()
