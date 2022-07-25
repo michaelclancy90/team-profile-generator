@@ -28,7 +28,7 @@ const managerQuestions = [
         message: 'What is their office number?',
     },
 ]
-/*
+
 const engineerQuestions = [
     {
         type: 'input',
@@ -55,7 +55,7 @@ const engineerQuestions = [
 const internQuestions = [
     {
         type: 'input',
-        name: 'name'
+        name: 'name',
         message: 'Who is the engineer?',
     },
     {
@@ -73,7 +73,7 @@ const internQuestions = [
         name: 'school',
         message: 'What school do they attend?',
     },
-]*/
+]
 
 const roleQuestion = [
     {
@@ -87,8 +87,8 @@ const roleQuestion = [
 function init () {
     inquirer
     .prompt(managerQuestions)
-    .then(({name,id,email,officeNumber}) =>{
-         const newManager = new Manager(name,id,email,officeNumber);
+    .then(({name, id, email, officeNumber}) =>{
+         const newManager = new Manager(name, id, email, officeNumber);
          teamMembers.push(newManager);
          console.log(teamMembers);
         nextTeamMember()
@@ -98,18 +98,38 @@ function init () {
 function nextTeamMember(){
     inquirer
     .prompt(roleQuestion)
-    .then(({choices}) => {
-    if (choices === 'Intern'){
-        console.log('Intern')
+    .then(({role}) => {
+
+    if (role === 'Intern'){
         intern();
-    } else if (choices === 'Engineer'){
-        console.log('engineer')
-         engineer()
+    } else if (role === 'Engineer'){
+        engineer()
     } else {
-        console.log('None')
+        console.log()
     }
     })
+};
 
+function intern(){
+    inquirer
+    .prompt(internQuestions)
+    .then(({name, id, email, school}) =>{
+        const newIntern = new Intern(name, id, email, school);
+        teamMembers.push(newIntern);
+        console.log(teamMembers);
+       nextTeamMember()
+    })
+}
+
+function engineer(){
+    inquirer
+    .prompt(engineerQuestions)
+    .then(({name, id, email, github}) =>{
+        const newEngineer = new Engineer(name, id, email, github);
+        teamMembers.push(newEngineer);
+        console.log(teamMembers);
+       nextTeamMember()
+    })
 }
 
 init ()
