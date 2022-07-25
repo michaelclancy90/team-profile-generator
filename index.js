@@ -56,7 +56,7 @@ const internQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: 'Who is the engineer?',
+        message: 'Who is the intern?',
     },
     {
         type: 'input',
@@ -105,7 +105,7 @@ function nextTeamMember(){
     } else if (role === 'Engineer'){
         engineer()
     } else {
-        console.log()
+        writeToFile()
     }
     })
 };
@@ -132,4 +132,9 @@ function engineer(){
     })
 }
 
+function writeToFile(fileName, questions,) {
+    fs.writeFile(fileName, questions, err =>{
+        err ? console.error(err) : console.log('Success!')
+    });
+}
 init ()
