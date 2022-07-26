@@ -106,8 +106,8 @@ function nextTeamMember(){
     } else if (role === 'Engineer'){
         engineer()
     } else {
-        
-        writeToFile()
+        generateHTML(teamMembers)
+         writeToFile(teamMembers)
     }
     })
 };
@@ -143,3 +143,6 @@ function writeToFile(teamMembers,) {
     
 }
 init ()
+
+module.exports = generateHTML;
+module.exports = teamMembers;
