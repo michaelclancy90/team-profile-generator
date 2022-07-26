@@ -3,6 +3,7 @@ const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generateHTML = require('./src/generateHTML')
 
 const teamMembers = []
 
@@ -105,6 +106,7 @@ function nextTeamMember(){
     } else if (role === 'Engineer'){
         engineer()
     } else {
+        
         writeToFile()
     }
     })
@@ -132,9 +134,12 @@ function engineer(){
     })
 }
 
-function writeToFile(fileName, questions,) {
-    fs.writeFile(fileName, questions, err =>{
+function writeToFile(teamMembers,) {
+    let data =  generateHTML(teamMembers)
+    fs.writeFile('dist/index.html', data, err =>{
         err ? console.error(err) : console.log('Success!')
     });
+
+    
 }
 init ()
