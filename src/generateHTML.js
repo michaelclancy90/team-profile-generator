@@ -1,84 +1,88 @@
 const Manager = require("../lib/manager");
 const Engineer = require("../lib/engineer");
 const Intern = require("../lib/intern");
-const teamMembers = require("../index");
 
 
-const generateManagerHTML = (Manager) => { 
-`
-    <div class="card employee-card shadow p-3 mb-5 bg-body rounded">
-        <div class="card-header bg-primary text-white">
-            <div class="card-header">${Manager.name}</h2>
-            <div class="card-header">${Manager.role}</h3>
-        </div>
-        <div class="card-body">
-            <ul class="list-group">
-                <li class="list-group-item">ID: ${Manager.id}</li>
-                <li class="list-group-item">Email: <a href="mailto:${Manager.email}">${Manager.email}</a></li>
-                <li class="list-group-item">Office number: ${Manager.officeNumber}</li>
-            </ul>
-        </div>
-    </div>
-    `;
-};
-
-const generateEngineerHTML = (Engineer) => { 
-`
-<div class="card employee-card shadow p-3 mb-5 bg-body rounded">
-    <div class="card-header bg-primary text-white">
-        <div class="card-header">${Engineer.name}</h2>
-        <div class="card-header">${Engineer.role}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: ${Engineer.id}</li>
-            <li class="list-group-item">Email: <a href="mailto:${Engineer.email}">${Engineer.email}</a></li>
-            <li class="list-group-item">Office number: ${Engineer.officeNumber}</li>
-        </ul>
-    </div>
-</div>
-`;
-
-};
-
-const generateInternHTML = (Intern) => { 
-`
-<div class="card employee-card shadow p-3 mb-5 bg-body rounded">
-    <div class="card-header bg-primary text-white">
-        <div class="card-header">${Intern.name}</h2>
-        <div class="card-header"></i>${Intern.role}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: ${Intern.id}</li>
-            <li class="list-group-item">Email: <a href="mailto:${Intern.email}">${Intern.email}</a></li>
-            <li class="list-group-item">Office number: ${Intern.officeNumber}</li>
-        </ul>
-    </div>
-</div>
-`;
-
-};
-
-function generateTeam(teamMembers) {
-    let html = "";
-    for (i = 0; i < teamMembers.length; i++) {
-        if(teamMembers[i] instanceof Manager) {
-        html = html.concat(generateManagerHTML(teamMembers[i]));
-        }
-        else if(teamMembers[i] instanceof Engineer) {
-        html = html.concat(generateEngineerHTML(teamMembers[i]));
-        }
-        else if(teamMembers[i] instanceof Intern) {
-        html = html.concat(generateInternHTML(teamMembers[i]));
+const generateTeam = (teamMembers) => {
+    console.log(teamMembers)
+    const html = [];
+    const generateManagerHTML = (manager) => { 
+        console.log(manager)
+        let managerHTML = `
+            <div class="card employee-card shadow p-3 mb-5 bg-body rounded">
+                <div class="card-header bg-primary text-white">
+                    <div class="card-header">${manager.name}</h2>
+                    <div class="card-header">${manager.role}</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">ID: ${manager.id}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${manager.email}">${manager.email}</a></li>
+                        <li class="list-group-item">Office number: ${manager.officeNumber}</li>
+                    </ul>
+                </div>
+            </div>
+            `;
+            html.push(managerHTML);
         };
+
+    const generateEngineerHTML = (engineer) => { 
+        let engineerHMTL =  `
+            <div class="card employee-card shadow p-3 mb-5 bg-body rounded">
+                <div class="card-header bg-primary text-white">
+                    <div class="card-header">${engineer.name}</h2>
+                    <div class="card-header">${engineer.role}</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">ID: ${engineer.id}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
+                        <li class="list-group-item">Office number: ${engineer.officeNumber}</li>
+                    </ul>
+                </div>
+            </div>
+            `;
+            html.push(engineerHMTL);
+
     };
-    return html;
-};
+
+    const generateInternHTML = (intern) => { 
+        let internHTML =  `
+            <div class="card employee-card shadow p-3 mb-5 bg-body rounded">
+                <div class="card-header bg-primary text-white">
+                    <div class="card-header">${intern.name}</h2>
+                    <div class="card-header"></i>${intern.role}</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">ID: ${intern.id}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${intern.email}">${intern.email}</a></li>
+                        <li class="list-group-item">Office number: ${intern.school}</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+        html.push(internHTML);
+
+    };
+
+    for (let i = 0; i < teamMembers.length; i++) {
+        if (teamMembers[i].getRole() === "Manager") {
+            generateManagerHTML(teamMembers[i]);
+        }
+        if (teamMembers[i].getRole() === "Engineer") {
+            generateEngineerHTML(teamMembers[i]);
+        }
+        if (teamMembers[i].getRole() === "Intern") {
+            generateInternHTML(teamMembers[i]);
+        }
+    }
+    return html.join('');
+}
 
 
 
-function generateHTML(teamMembers) { 
+module.exports = teamMembers => {
 
 return `<!DOCTYPE html>
 <html lang="en">
@@ -113,4 +117,3 @@ return `<!DOCTYPE html>
 `;
 
 }
-module.exports = generateHTML;

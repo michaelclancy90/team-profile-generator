@@ -38,7 +38,7 @@ const engineerQuestions = [
     },
     {
         type: 'input',
-        name: 'Id',
+        name: 'id',
         message: 'What is their employee ID number?',
     },
     {
@@ -91,7 +91,7 @@ function init () {
     .then(({name, id, email, officeNumber}) =>{
          const newManager = new Manager(name, id, email, officeNumber);
          teamMembers.push(newManager);
-         console.log(teamMembers);
+         //console.log(teamMembers);
         nextTeamMember()
     }) 
 }
@@ -106,8 +106,7 @@ function nextTeamMember(){
     } else if (role === 'Engineer'){
         engineer()
     } else {
-        generateHTML(teamMembers)
-         writeToFile(teamMembers)
+        writeToFile(teamMembers)
     }
     })
 };
@@ -118,7 +117,7 @@ function intern(){
     .then(({name, id, email, school}) =>{
         const newIntern = new Intern(name, id, email, school);
         teamMembers.push(newIntern);
-        console.log(teamMembers);
+       // console.log(teamMembers);
        nextTeamMember()
     })
 }
@@ -129,12 +128,12 @@ function engineer(){
     .then(({name, id, email, github}) =>{
         const newEngineer = new Engineer(name, id, email, github);
         teamMembers.push(newEngineer);
-        console.log(teamMembers);
+        //console.log(teamMembers);
        nextTeamMember()
     })
 }
 
-function writeToFile(teamMembers,) {
+function writeToFile() {
     let data =  generateHTML(teamMembers)
     fs.writeFile('dist/index.html', data, err =>{
         err ? console.error(err) : console.log('Success!')
@@ -145,4 +144,3 @@ function writeToFile(teamMembers,) {
 init ()
 
 module.exports = generateHTML;
-module.exports = teamMembers;
