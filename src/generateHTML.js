@@ -1,18 +1,11 @@
-const Manager = require("../lib/manager");
-const Engineer = require("../lib/engineer");
-const Intern = require("../lib/intern");
-
-
 const generateTeam = (teamMembers) => {
-    console.log(teamMembers)
-    const html = [];
-    const generateManagerHTML = (manager) => { 
-        console.log(manager)
+    let html = [];
+    function generateManagerHTML(manager){ 
         let managerHTML = `
-            <div class="card employee-card shadow p-3 mb-5 bg-body rounded">
+            <div class="card col-3">
                 <div class="card-header bg-primary text-white">
-                    <div class="card-header">${manager.name}</h2>
-                    <div class="card-header">${manager.role}</h3>
+                    <div class="card-header">${manager.name}</div>
+                    <div class="card-header">${manager.role}</div>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
@@ -26,18 +19,18 @@ const generateTeam = (teamMembers) => {
             html.push(managerHTML);
         };
 
-    const generateEngineerHTML = (engineer) => { 
+    function generateEngineerHTML(engineer){ 
         let engineerHMTL =  `
-            <div class="card employee-card shadow p-3 mb-5 bg-body rounded">
+            <div class="card col-3">
                 <div class="card-header bg-primary text-white">
-                    <div class="card-header">${engineer.name}</h2>
-                    <div class="card-header">${engineer.role}</h3>
+                    <div class="card-header">${engineer.name}</div>
+                    <div class="card-header">${engineer.role}</div>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item">ID: ${engineer.id}</li>
                         <li class="list-group-item">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
-                        <li class="list-group-item">Office number: ${engineer.officeNumber}</li>
+                        <li class="list-group-item">Github: <a href="mailto:${engineer.github}">${engineer.github}</li>
                     </ul>
                 </div>
             </div>
@@ -46,18 +39,18 @@ const generateTeam = (teamMembers) => {
 
     };
 
-    const generateInternHTML = (intern) => { 
+    function generateInternHTML(intern){ 
         let internHTML =  `
-            <div class="card employee-card shadow p-3 mb-5 bg-body rounded">
+            <div class="card col-3">
                 <div class="card-header bg-primary text-white">
-                    <div class="card-header">${intern.name}</h2>
-                    <div class="card-header"></i>${intern.role}</h3>
+                    <div class="card-header">${intern.name}</div>
+                    <div class="card-header"></i>${intern.role}</div>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item">ID: ${intern.id}</li>
                         <li class="list-group-item">Email: <a href="mailto:${intern.email}">${intern.email}</a></li>
-                        <li class="list-group-item">Office number: ${intern.school}</li>
+                        <li class="list-group-item">School: ${intern.school}</li>
                     </ul>
                 </div>
             </div>
@@ -82,7 +75,7 @@ const generateTeam = (teamMembers) => {
 
 
 
-module.exports = teamMembers => {
+module.exports = (teamMembers) => {
 
 return `<!DOCTYPE html>
 <html lang="en">
@@ -99,15 +92,13 @@ return `<!DOCTYPE html>
     <div class = 'container-fluid'>
         <div class="row">
             <div class="col-12 bg-danger text-white">
-                <header class="text-center"> Team Profile Generator </header>
+                <header class="text-center"><h1> Team Profile Generator </h1></header>
             </div>
         </div>
     </div>
-    <div class = 'container'>
+    <div class = 'container-fluid'>
         <div class="row">
-            <div class="col-12 bg-danger text-white">
                 ${generateTeam(teamMembers)}
-            </div>
         </div>
     </div>
 
