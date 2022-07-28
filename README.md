@@ -44,8 +44,10 @@ THEN I exit the application, and the HTML is generated <br />
  <br />
 
 ## **Deployed Site link**
+
  <br />
- [Video ] ()
+
+[Screen Recording](https://www.youtube.com/watch?v=8-a290k-DFI)
  <br />
 
 
