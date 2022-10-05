@@ -7,6 +7,23 @@
   },
   "scripts": {
     "test": "jest --verbose test/*"
-  }
-  
+  },
+  "name": "team-profile-generator",
+  "description": "<br />\r For this project, my goal is to create a app that would allow the user to added different members to their team.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelclancy90/team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelclancy90/team-profile-generator/issues"
+  },
+  "homepage": "https://michaelclancy90.github.io/team-profile-generator"
 }
